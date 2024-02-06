@@ -3,7 +3,7 @@ class Country {
         this.name = propreties[0].name.common
         this.flag = propreties[0].flag
         // this.translations = this.validAnswers(propreties[0].translation)
-        this.translations = propreties[0].translation
+        this.goodAnswers = propreties[0].translation
 
     }
 

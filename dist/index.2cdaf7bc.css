@@ -1,122 +1,169 @@
-:root {
-  --shadow-color: 165deg 100% 25%;
-  --shadow-elevation-low: 0px .6px .7px hsl(var(--shadow-color) / .34), -.1px .9px 1px -1.2px hsl(var(--shadow-color) / .34), -.2px 2.2px 2.5px -2.5px hsl(var(--shadow-color) / .34);
-  --shadow-elevation-medium: 0px .6px .7px hsl(var(--shadow-color) / .36), -.1px 1.8px 2px -.8px hsl(var(--shadow-color) / .36), -.3px 4.5px 5.1px -1.7px hsl(var(--shadow-color) / .36), -.8px 11.1px 12.5px -2.5px hsl(var(--shadow-color) / .36);
-  --shadow-elevation-high: 0px .6px .7px hsl(var(--shadow-color) / .34), -.2px 3.2px 3.6px -.4px hsl(var(--shadow-color) / .34), -.4px 6px 6.8px -.7px hsl(var(--shadow-color) / .34), -.7px 9.9px 11.2px -1.1px hsl(var(--shadow-color) / .34), -1.1px 15.8px 17.8px -1.4px hsl(var(--shadow-color) / .34), -1.8px 24.7px 27.9px -1.8px hsl(var(--shadow-color) / .34), -2.7px 37.6px 42.4px -2.1px hsl(var(--shadow-color) / .34), -3.9px 55.4px 62.5px -2.5px hsl(var(--shadow-color) / .34);
+:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
 }
 
-* {
+*, :before, :after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+}
+
+a, button {
+  cursor: revert;
+}
+
+ol, ul, menu {
+  list-style: none;
+}
+
+img {
+  max-block-size: 100%;
+  max-inline-size: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+input, textarea {
+  -webkit-user-select: auto;
+}
+
+textarea {
+  white-space: revert;
+}
+
+meter {
+  appearance: revert;
+}
+
+:where(pre) {
+  all: revert;
+}
+
+::placeholder {
+  color: unset;
+}
+
+::marker {
+  content: initial;
+}
+
+:where([hidden]) {
+  display: none;
+}
+
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+
+:where(dialog:modal) {
+  all: revert;
+}
+
+:root {
+  --primary-color: #665bdc;
+  --primary-color-darker: #5c51d2;
+  --secondary-color: #efeefc;
+  --shadow-color: 246deg 54% 36%;
+  --shadow-elevation-base: .3px .5px .7px hsl(var(--shadow-color));
+  --shadow-elevation-low: var(--shadow-elevation-base) / .34, .4px .8px 1px -1.2px hsl(var(--shadow-color) / .34), 1px 2px 2.5px -2.5px hsl(var(--shadow-color) / .34);
+  --shadow-elevation-medium: var(--shadow-elevation-base) / .36, .8px 1.6px 2px -.8px hsl(var(--shadow-color) / .36), 2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / .36), 5px 10px 12.6px -2.5px hsl(var(--shadow-color) / .36);
+  --shadow-elevation-high: var(--shadow-elevation-base) / .34, 1.5px 2.9px 3.7px -.4px hsl(var(--shadow-color) / .34), 2.7px 5.4px 6.8px -.7px hsl(var(--shadow-color) / .34), 4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / .34), 7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / .34), 11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / .34), 17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / .34), 25px 50px 62.9px -2.5px hsl(var(--shadow-color) / .34);
 }
 
 body {
-  background-color: #efefef;
-  font-family: Inter, sans-serif;
-}
-
-header {
-  justify-content: space-between;
+  background-color: var(--primary-color);
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 2vw 2vw 0;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
-}
-
-header h1 {
-  font-size: 3rem;
 }
 
 main {
-  grid-gap: .5rem;
-  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-  padding: 2vw;
-  display: grid;
-}
-
-main .user {
-  color: #010123;
-  box-shadow: var(--shadow-elevation-low);
-  grid-gap: 1rem;
-  -webkit-user-select: none;
-  user-select: none;
-  background-color: #fff;
+  background-color: var(--secondary-color);
+  box-shadow: var(--shadow-elevation-high);
   border-radius: 25px;
-  grid-template-columns: 100px 2fr 100px;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 1rem .5rem;
-  transition: all .15s ease-in-out;
-  display: grid;
-  overflow: hidden;
-}
-
-main .user:hover {
-  box-shadow: var(--shadow-elevation-medium);
-  transform: scale(1.02);
-}
-
-main .user--info {
-  cursor: default;
-  align-self: center;
-}
-
-main .user--info h1 {
-  font-size: 1rem;
-}
-
-main .user--info p {
-  color: #666;
-  font-weight: 300;
-}
-
-main .user img {
-  border-radius: 50%;
-  place-self: center;
-  width: 75px;
-  height: 75px;
-}
-
-main .user a {
-  border-radius: 100%;
-  justify-content: center;
-  text-decoration: none;
+  width: 50vw;
+  height: 80vh;
   display: flex;
 }
 
-main .user a img {
+main #flag {
+  height: 50%;
+}
+
+main #flag h1 {
+  font-size: 20rem;
+}
+
+main form {
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+  padding: 0 2rem;
+  display: flex;
 }
 
-main .user[data-present="true"] {
-  color: #fff;
-  background-color: #06d6a0;
-}
-
-main .user[data-present="true"] p {
-  color: #fff;
-}
-
-main .user .mail {
-  font-size: 2rem;
-}
-
-button {
-  background-color: #fff;
+main form input {
   border: none;
-  border-radius: 25px;
+  border-bottom: 2px solid var(--primary-color-darker);
+  color: var(--primary-color-darker);
+  text-align: center;
+  width: 100%;
+  height: 5rem;
+  margin: 1rem;
   padding: 1rem;
-  transition: all .15s ease-in-out;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
-button:hover {
-  transform: scale(1.05);
-}
-
-button.selected {
+main form button {
+  background-color: var(--primary-color);
+  box-shadow: var(--shadow-elevation-medium);
   color: #fff;
-  background-color: #06d6a0;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 5rem;
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 2rem;
+  transition: all .2s ease-in-out;
+}
+
+main form button:active {
+  box-shadow: var(--shadow-elevation-low);
+  transform: translateY(4px);
+}
+
+aside {
+  color: var(--secondary-color);
+  font-size: 2rem;
+  font-weight: 700;
+  position: fixed;
+  top: 1rem;
+}
+
+aside#score {
+  left: 1rem;
+}
+
+aside#highscore {
+  right: 1rem;
 }
 
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

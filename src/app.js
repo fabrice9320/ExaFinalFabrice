@@ -1,5 +1,7 @@
 "use strict"
 
+import Game from "./Game";
+
 import { shuffle } from "lodash";
 import Country from "./Country";
 
@@ -28,6 +30,17 @@ const apiRequest = async (url) => {
             return cleanedData;
         }
 
+        const formAnswer = document.querySelector('form');
+        formAnswer.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const form = document.querySelector("form");
+            const formData = new FormData(form);
+            console.log(formData);
+
+            nextcountry();
+
+        });
 
         const countriesClean = cleanData(dataCountries);
         console.log(countriesClean);
@@ -39,7 +52,7 @@ const apiRequest = async (url) => {
         console.log(test);
         test.displayFlag();
 
-        new Game(dataCountriesShuffle);
+        // new Game(dataCountriesShuffle);
 
 
     } catch (error) {
